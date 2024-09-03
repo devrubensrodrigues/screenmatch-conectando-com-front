@@ -12,7 +12,6 @@ import br.com.alura.screenmatch.service.ConverteDados;
 import java.util.*;
 import java.util.stream.Collectors;
 
-// Parei no vídeo 04."Buscas com multiplos criterios"
 public class Principal {
     private Scanner leitura = new Scanner(System.in);
     private final String ENDERECO = "https://www.omdbapi.com/?t=";
