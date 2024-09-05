@@ -35,7 +35,7 @@ public interface Repository extends JpaRepository<Serie, Long> {
     @Query("SELECT e FROM Serie s JOIN s.episodios e WHERE s.titulo ILIKE %:nomeSerie% AND YEAR(e.date) >= :data")
     List<Episodio> buscarEpisodiosPorData(String nomeSerie, String data);
 
-    @Query("SELECT s FROM Serie s JOIN s.episodios e WHERE YEAR(e.date) = :data")
+    @Query("SELECT s FROM Serie s JOIN s.episodios e WHERE YEAR(e.date) = :data GROUP BY s")
     List<Serie> buscarSeriesLancamentos(Integer data);
 
     @Query("SELECT e FROM Serie s JOIN s.episodios e WHERE s.id = :id")
