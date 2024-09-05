@@ -11,68 +11,68 @@ public class Episodio {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Integer season;
-    private String title;
-    private Integer numberEp;
-    private Double assessment;
-    private LocalDate date;
+    private Integer temporada;
+    private String titulo;
+    private Integer numeroEpisodio;
+    private Double avaliacao;
+    private LocalDate dataLancamento;
     @ManyToOne
     private Serie serie;
     public Episodio() {}
     public Episodio(Integer numeroTemp, DadosEpsodio dadosEpsodio) {
-        this.season = numeroTemp;
-        this.title = dadosEpsodio.titulo();
-        this.numberEp = dadosEpsodio.numeroEp();
+        this.temporada = numeroTemp;
+        this.titulo = dadosEpsodio.titulo();
+        this.numeroEpisodio = dadosEpsodio.numeroEp();
         try {
-            this.assessment = Double.parseDouble(dadosEpsodio.avaliacao());
+            this.avaliacao = Double.parseDouble(dadosEpsodio.avaliacao());
         } catch(NumberFormatException ex) {
-            this.assessment = 0.0;
+            this.avaliacao = 0.0;
         }
         try {
-            this.date = LocalDate.parse(dadosEpsodio.dataLancamento());
+            this.dataLancamento = LocalDate.parse(dadosEpsodio.dataLancamento());
         } catch(DateTimeParseException ex) {
-            this.date = null;
+            this.dataLancamento = null;
         }
     }
 
-    public Integer getSeason() {
-        return season;
+    public Integer getTemporada() {
+        return temporada;
     }
 
-    public void setSeason(Integer season) {
-        this.season = season;
+    public void setTemporada(Integer temporada) {
+        this.temporada = temporada;
     }
 
-    public String getTitle() {
-        return title;
+    public String getTitulo() {
+        return titulo;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
     }
 
-    public Integer getNumberEp() {
-        return numberEp;
+    public Integer getNumeroEpisodio() {
+        return numeroEpisodio;
     }
 
-    public void setNumberEp(Integer numberEp) {
-        this.numberEp = numberEp;
+    public void setNumeroEpisodio(Integer numeroEpisodio) {
+        this.numeroEpisodio = numeroEpisodio;
     }
 
-    public Double getAssessment() {
-        return assessment;
+    public Double getAvaliacao() {
+        return avaliacao;
     }
 
-    public void setAssessment(Double assessment) {
-        this.assessment = assessment;
+    public void setAvaliacao(Double avaliacao) {
+        this.avaliacao = avaliacao;
     }
 
-    public LocalDate getDate() {
-        return date;
+    public LocalDate getDataLancamento() {
+        return dataLancamento;
     }
 
-    public void setDate(LocalDate date) {
-        this.date = date;
+    public void setDataLancamento(LocalDate dataLancamento) {
+        this.dataLancamento = dataLancamento;
     }
 
     public Long getId() {
@@ -93,10 +93,10 @@ public class Episodio {
 
     @Override
     public String toString() {
-        return "season=" + season +
-                ", title='" + title +
-                ", numberEp=" + numberEp +
-                ", assessment=" + assessment +
-                ", date=" + date;
+        return "season=" + temporada +
+                ", title='" + titulo +
+                ", numberEp=" + numeroEpisodio +
+                ", assessment=" + avaliacao +
+                ", date=" + dataLancamento;
     }
 }

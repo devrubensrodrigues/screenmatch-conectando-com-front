@@ -45,10 +45,17 @@ public class SerieService {
         }
     }
 
-    public List<EpisodioDTO> obterTemporadas(String id) {
-        return repository.obterTemporadas(id).stream()
-                .map(e -> new EpisodioDTO(e.getSeason(), e.getTitle(), e.getNumberEp(), e.getAssessment(), e.getDate()))
-                .collect(Collectors.toList());
+    public List<EpisodioDTO> obterTemporadas(Long id) {
+        Optional<Serie> optionalSerie = repository.findById(id);
+
+        if (optionalSerie.isPresent()) {
+            Serie s = optionalSerie.get();
+            return s.getEpisodios().stream()
+                    .map(e -> new EpisodioDTO(e.getTemporada(), e.getTitulo(), e.getNumeroEpisodio()))
+                    .collect(Collectors.toList());
+        }else {
+            return null;
+        }
     }
 
     private List<SerieDTO> converteDados(List<Serie> series) {

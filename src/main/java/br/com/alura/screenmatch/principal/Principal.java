@@ -45,10 +45,10 @@ public class Principal {
                      0- Sair
                     """;
             System.out.println(menu);
-            opcao = leitura.nextInt();
+            var opcaoBusca = leitura.nextInt();
             leitura.nextLine();
 
-            switch (opcao) {
+            switch (opcaoBusca) {
                 case 1:
                     buscarSerieWeb();
                     break;
@@ -84,7 +84,7 @@ public class Principal {
                     break;
                 case 0:
                     System.out.println("Saindo...");
-                    break;
+                    opcao = 0;
                 default:
                     System.out.println("Opção inválida");
             }
@@ -216,7 +216,7 @@ public class Principal {
         List<Episodio> episodiosBuscadosPorNome = repository.buscarEpisodioPorTrecho(nomeSerie, nomeOuTrecho);
         System.out.println("Episódios encontrados: ");
         episodiosBuscadosPorNome.forEach(e ->
-                System.out.println("Nome " + e.getTitle() + " Temporada: " + e.getSeason() + " Avaliação: " + e.getAssessment()));
+                System.out.println("Nome " + e.getTitulo() + " Temporada: " + e.getTemporada() + " Avaliação: " + e.getAvaliacao()));
     }
 
     private void buscarTop5Episodios() {
@@ -225,7 +225,7 @@ public class Principal {
 
         List<Episodio> top5Episodios = repository.buscarTop5EpisodiosQuery(nomeSerie);
         top5Episodios.forEach(e ->
-                System.out.println("Nome " + e.getTitle() + " Episódio: " + e.getNumberEp() + " Temporada: " + e.getSeason() + " Avaliação: " + e.getAssessment()));
+                System.out.println("Nome " + e.getTitulo() + " Episódio: " + e.getNumeroEpisodio() + " Temporada: " + e.getTemporada() + " Avaliação: " + e.getAvaliacao()));
     }
 
     private void buscarEpisodiosPelaData() {
@@ -236,6 +236,6 @@ public class Principal {
 
         List<Episodio> episodiosPorData = repository.buscarEpisodiosPorData(nomeSerie, data);
         episodiosPorData.forEach(e ->
-                System.out.println("Nome " + e.getTitle() + " Episódio: " + e.getNumberEp() + " Temporada: " + e.getSeason() + " Avaliação: " + e.getAssessment() + " Data: " + e.getDate()));
+                System.out.println("Nome " + e.getTitulo() + " Episódio: " + e.getNumeroEpisodio() + " Temporada: " + e.getTemporada() + " Avaliação: " + e.getAvaliacao() + " Data: " + e.getDataLancamento()));
     }
 }

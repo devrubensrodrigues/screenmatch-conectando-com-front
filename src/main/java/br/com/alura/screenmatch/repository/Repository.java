@@ -26,18 +26,16 @@ public interface Repository extends JpaRepository<Serie, Long> {
     @Query("SELECT s FROM Serie s WHERE s.totalTemporadas <= :totalTemporadaBuscado AND s.avaliacao >= :totalAvaliacao")
     List<Serie> buscarSeriePorTotalDeTemporada(int totalTemporadaBuscado, double totalAvaliacao);
 
-    @Query("SELECT e FROM Serie s JOIN s.episodios e WHERE s.titulo ILIKE %:nomeSerie% AND e.title ILIKE %:nomeOuTrecho%")
+    @Query("SELECT e FROM Serie s JOIN s.episodios e WHERE s.titulo ILIKE %:nomeSerie% AND e.titulo ILIKE %:nomeOuTrecho%")
     List<Episodio> buscarEpisodioPorTrecho(String nomeSerie, String nomeOuTrecho);
 
-    @Query("SELECT e FROM Serie s JOIN s.episodios e WHERE s.titulo ILIKE %:nomeSerie% ORDER BY e.assessment DESC LIMIT 5")
+    @Query("SELECT e FROM Serie s JOIN s.episodios e WHERE s.titulo ILIKE %:nomeSerie% ORDER BY e.avaliacao DESC LIMIT 5")
     List<Episodio> buscarTop5EpisodiosQuery(String nomeSerie);
 
-    @Query("SELECT e FROM Serie s JOIN s.episodios e WHERE s.titulo ILIKE %:nomeSerie% AND YEAR(e.date) >= :data")
+    @Query("SELECT e FROM Serie s JOIN s.episodios e WHERE s.titulo ILIKE %:nomeSerie% AND YEAR(e.dataLancamento) >= :data")
     List<Episodio> buscarEpisodiosPorData(String nomeSerie, String data);
 
-    @Query("SELECT s FROM Serie s JOIN s.episodios e WHERE YEAR(e.date) = :data GROUP BY s")
+    @Query("SELECT s FROM Serie s JOIN s.episodios e WHERE YEAR(e.dataLancamento) = :data GROUP BY s")
     List<Serie> buscarSeriesLancamentos(Integer data);
 
-    @Query("SELECT e FROM Serie s JOIN s.episodios e WHERE s.id = :id")
-    List<Episodio> obterTemporadas(String id);
 }

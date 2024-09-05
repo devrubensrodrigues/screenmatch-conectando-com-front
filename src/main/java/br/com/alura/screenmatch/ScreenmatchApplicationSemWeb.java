@@ -23,4 +23,5 @@ public class ScreenmatchApplicationSemWeb implements CommandLineRunner {
 		principal.exibeMenu();
 
 	}
-}*/
+}
+*/
